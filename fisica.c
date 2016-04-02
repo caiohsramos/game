@@ -1,64 +1,118 @@
 #include "fisica.h"
+#include "constantes.h"
+#include "vetor.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 
 
-double aceleracaoPlaneta(PLANETA *p, NAVE *n) {
-    double dist_2 = ((n->posx)*(n->posx)) + ((n->posy)*(n->posy));
-    double a = -(CTE_G*(p->massa))/dist_2;
-    return a;
+//REFAZER TUDO DAQUI PRA BAIXO.................
+
+//força que a nave n sofre do planeta p
+void forcaPlaneta(double *f, NAVE *n, PLANETA *p) {
+	double dist;
+	dist = magnitude(n->pos);
+	double force = (CTE_G * n->massa * p->massa) / (dist * dist);
+	direcao(n->pos, f);
+	produto_esc(f, -force, f);
+}
+ 
+//força que a n1 sofre da n2
+void forcaNave(double *f, NAVE *n1, NAVE *n2) {
+	double delta[2];
+	subt_vet(delta, n2->pos, n1->pos);
+	double dist = magnitude(delta);
+	double force = (CTE_G * n1->massa * n2->massa) / (dist * dist);
+	direcao(delta, f);
+	produto_esc(f, force, f);
 }
 
-double aceleracaoNave(NAVE *n1, NAVE *n2) {
-    double dist_2 = pow(((n1->posx)-(n2->posx)), 2) + pow(((n1->posy)-(n2->posy)), 2);
-    double a = -(CTE_G*(n2->massa))/dist_2;
-    return a;
+void moveNave(double *f, NAVE *n) {
+	double aux[2];
+	produto_esc(aux, 1.0/n->massa, f);
+	produto_esc(aux, T, aux);
+	soma_vet(n->vel, n->vel, aux);
+	
+	
+	produto_esc(aux, T, n->vel);
+	soma_vet(n->pos, n->pos, aux);
 }
 
-double v(double v0, double a, double t) {
-	return (v0 + a*t);
+void forcaPlanetaProj(double *f, PROJETIL *proj, PLANETA *p) {
+	double dist;
+	dist = magnitude(proj->pos);
+	double force = (CTE_G * proj->massa * p->massa) / (dist * dist);
+	direcao(proj->pos, f);
+	produto_esc(f, -force, f);
+}
+ 
+void forcaNaveProj(double *f, PROJETIL *proj, NAVE *n) {
+	double delta[2];
+	subt_vet(delta, n->pos, proj->pos);
+	double dist = magnitude(delta);
+	double force = (CTE_G * proj->massa * n->massa) / (dist * dist);
+	direcao(delta, f);
+	produto_esc(f, force, f);
 }
 
-double s(double s0, double v0, double a, double t) {
-	return (s0 + v0*t + (a*t*t/2));
+void moveProj(double *f, PROJETIL *proj) {
+	double aux[2];
+	produto_esc(aux, 1.0/proj->massa, f);
+	produto_esc(aux, T, aux);
+	soma_vet(proj->vel, proj->vel, aux);
+	
+	
+	produto_esc(aux, T, proj->vel);
+	soma_vet(proj->pos, proj->pos, aux);
 }
+
 
 void simular(UNIVERSO *u) {
-	if(u->t_sim <= 0) return;
-	//faz a simulacao....
-	double ax;
-	double ay;
-	double a;
-	//calcula nova posicao n1.
-		//forcas: planeta, n2.
-	ax = 0;
-	ay = 0;	
-	
-	a = aceleracaoPlaneta(u->p, u->n1);
-	ax += a*cos(atan((u->n1->posy)/(u->n1->posx)));
-	ay += a*sin(atan((u->n1->posy)/(u->n1->posx)));
-	
-	a = aceleracaoNave(u->n1, u->n2);
-	ax += a*cos(atan((u->n1->posy)/(u->n1->posx)));
-	ay += a*sin(atan((u->n1->posy)/(u->n1->posx)));
-	
-	
-	
-	//calcula nova posicao n2.
-		//forcas: planeta, n1.
-	ax = 0;
-	ay = 0;
-	
-	a = aceleracaoPlaneta(u->p, u->n2);
-	ax += a*cos(atan((u->n2->posy)/(u->n2->posx)));
-	ay += a*sin(atan((u->n2->posy)/(u->n2->posx)));
-	
-	a = aceleracaoNave(u->n2, u->n1);
-	ax += a*cos(atan((u->n2->posy)/(u->n2->posx)));
-	ay += a*sin(atan((u->n2->posy)/(u->n2->posx)));
-	
-	//calcula nova posicao de cada projetil (for u->proj[i]).
-		//forcas: planeta, n1, n2.
-	
-	simular(u);
+	double f[2];
+	double f_total[2];
+	int i;
+	while(u->p->t_sim > 0.0) {
+		//faz a simulacao....
+		
+		//calcula nova posicao n1.
+			//forcas: planeta, n2.
+		forcaNave(f_total, u->n1, u->n2);
+		forcaPlaneta(f, u->n1, u->p);
+		soma_vet(f_total, f, f_total);
+		moveNave(f_total, u->n1);
+		
+		printf("N1:\n");
+		printf("posx = %.15lf, posy = %.15lf\n", u->n1->pos[0], u->n1->pos[1]);
+		printf("velx = %.15lf, vely = %.15lf\n", u->n1->vel[0], u->n1->vel[1]);
+		
+		//calcula nova posicao n2.
+			//forcas: planeta, n1.
+		forcaNave(f_total, u->n2, u->n1);
+		forcaPlaneta(f, u->n2, u->p);
+		soma_vet(f_total, f, f_total);
+		moveNave(f_total, u->n2);
+		
+		printf("N2:\n");
+		printf("posx = %.15lf, posy = %.15lf\n", u->n2->pos[0], u->n2->pos[1]);
+		printf("velx = %.15lf, vely = %.15lf\n", u->n2->vel[0], u->n2->vel[1]);
+		
+		//calcula nova posicao de cada projetil (for u->proj[i]).
+			//forcas: planeta, n1, n2.
+		if(u->t_proj > 0) {
+			for(i = 0; i < u->n_proj; i++) {
+				forcaNaveProj(f_total, &(u->proj[i]), u->n1);
+				forcaNaveProj(f, &(u->proj[i]), u->n2);
+				soma_vet(f_total, f, f_total);
+				forcaPlanetaProj(f, &(u->proj[i]), u->p);
+				soma_vet(f_total, f, f_total);
+				moveProj(f_total, &(u->proj[i]));
+				printf("PROJ%d:\n", i+1);
+				printf("posx = %.15lf, posy = %.15lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
+				printf("velx = %.15lf, vely = %.15lf\n", u->proj[i].vel[0], u->proj[i].vel[1]);
+			}
+		}
+		
+		u->t_proj -= T;
+		u->p->t_sim -= T;
+	}
 }

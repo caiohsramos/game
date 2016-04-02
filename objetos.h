@@ -1,13 +1,11 @@
-#ifndef OBJETOS_H_
-#define OBJETOS_H_
+#ifndef _OBJETOS_H_
+#define _OBJETOS_H_
 
 typedef struct NAVE_ {
     char nome[30];
     double massa;
-    double posx;
-    double posy;
-    double velx;
-    double vely;
+    double pos[2];
+    double vel[2];
 } NAVE;
 
 typedef struct PLANETA_ {
@@ -18,10 +16,8 @@ typedef struct PLANETA_ {
 
 typedef struct PROJETIL_ {
 	double massa;
-    double posx;
-    double posy;
-    double velx;
-    double vely;
+    double pos[2];
+    double vel[2];
 } PROJETIL;
 
 typedef struct UNIVERSO_ {
@@ -29,7 +25,6 @@ typedef struct UNIVERSO_ {
     NAVE *n2;
     PLANETA *p;
     PROJETIL *proj;
-    double t_sim;
     int n_proj;
     double t_proj;
 } UNIVERSO;

@@ -1,16 +1,21 @@
-#ifndef FISICA_H_
-#define FISICA_H_
-
-#define M_TERRA 6.02e24
-#define R_TERRA 6.4e6
-#define CTE_G 6.67e-11
-#define T 1/60
-
+#ifndef _FISICA_H_
+#define _FISICA_H_
 #include "objetos.h"
-double aceleracaoPlaneta(PLANETA *p, NAVE *n);
-double aceleracaoNave(NAVE *n1, NAVE *n2);
+
+//força que a nave n sofre do planeta p
+void forcaPlaneta(double *f, NAVE *n, PLANETA *p);
+ 
+//força que a n1 sofre da n2
+void forcaNave(double *f, NAVE *n1, NAVE *n2);
+
+void moveNave(double *f, NAVE *n);
+
+void forcaPlanetaProj(double *f, PROJETIL *proj, PLANETA *p);
+ 
+void forcaNaveProj(double *f, PROJETIL *proj, NAVE *n);
+
+void moveProj(double *f, PROJETIL *proj);
+
 void simular(UNIVERSO *u);
-double v(double v0, double a, double t);
-double s(double s0, double v0, double a, double t);
 
 #endif

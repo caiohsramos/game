@@ -18,10 +18,10 @@ NAVE *lerNave() {
 	NAVE *n = (NAVE*)malloc(sizeof(NAVE));
 	scanf("%s", n->nome);
 	scanf("%lf", &(n->massa));
-	scanf("%lf", &(n->posx));
-	scanf("%lf", &(n->posy));
-	scanf("%lf", &(n->velx));
-	scanf("%lf", &(n->vely));
+	scanf("%lf", &(n->pos[0]));
+	scanf("%lf", &(n->pos[1]));
+	scanf("%lf", &(n->vel[0]));
+	scanf("%lf", &(n->vel[1]));
 	
 	return n;
 }
@@ -40,10 +40,10 @@ PROJETIL *lerProj(int n_proj) {
 	int i;
 	for(i = 0; i < n_proj; i++) {
 		scanf("%lf", &(proj[i].massa));
-		scanf("%lf", &(proj[i].posx));
-		scanf("%lf", &(proj[i].posy));
-		scanf("%lf", &(proj[i].velx));
-		scanf("%lf", &(proj[i].vely));
+		scanf("%lf", &(proj[i].pos[0]));
+		scanf("%lf", &(proj[i].pos[1]));
+		scanf("%lf", &(proj[i].vel[0]));
+		scanf("%lf", &(proj[i].vel[1]));
 	}
 	return proj;
 }
@@ -57,14 +57,14 @@ void imprimirUniverso(UNIVERSO *u) {
 	printf("Nave 1:\n");
 	printf("\tNome: %s\n", u->n1->nome);
 	printf("\tMassa: %.2lf\n", u->n1->massa);
-	printf("\tposx: %.2lf, posy: %.2lf\n", u->n1->posx, u->n1->posy);
-	printf("\tvelx: %.2lf, vely: %.2lf\n", u->n1->velx, u->n1->vely);
+	printf("\tposx: %.2lf, posy: %.2lf\n", u->n1->pos[0], u->n1->pos[1]);
+	printf("\tvelx: %.2lf, vely: %.2lf\n", u->n1->vel[0], u->n1->vel[1]);
 	
 	printf("Nave 2:\n");
 	printf("\tNome: %s\n", u->n2->nome);
 	printf("\tMassa: %.2lf\n", u->n2->massa);
-	printf("\tposx: %.2lf, posy: %.2lf\n", u->n2->posx, u->n2->posy);
-	printf("\tvelx: %.2lf, vely: %.2lf\n", u->n2->velx, u->n2->vely);
+	printf("\tposx: %.2lf, posy: %.2lf\n", u->n2->pos[0], u->n2->pos[1]);
+	printf("\tvelx: %.2lf, vely: %.2lf\n", u->n2->vel[0], u->n2->vel[1]);
 	
 	printf("Numero de projeteis e duracao:\n\t%d projeteis, %.2lf\n", u->n_proj, u->t_proj);
 	
@@ -72,8 +72,8 @@ void imprimirUniverso(UNIVERSO *u) {
 	for(i = 0; i < u->n_proj; i++) {
 		printf("Projetil %d:\n", i+1);
 		printf("\tMassa: %.2lf\n", u->n1->massa);
-		printf("\tposx: %.2lf, posy: %.2lf\n", u->proj[i].posx, u->proj[i].posy);
-		printf("\tvelx: %.2lf, vely: %.2lf\n", u->proj[i].velx, u->proj[i].vely);
+		printf("\tposx: %.2lf, posy: %.2lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
+		printf("\tvelx: %.2lf, vely: %.2lf\n", u->proj[i].vel[0], u->proj[i].vel[1]);
 	}
 	
 }
