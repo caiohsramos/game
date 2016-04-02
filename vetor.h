@@ -1,6 +1,9 @@
 #ifndef _VETOR_H_
 #define _VETOR_H_
 
+#include <math.h>
+
+
 //'a' = 'b' + 'c'
 void soma_vet(double *a, double *b, double *c);
 

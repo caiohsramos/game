@@ -1,9 +1,4 @@
 #include "fisica.h"
-#include "constantes.h"
-#include "vetor.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
 
 
 //REFAZER TUDO DAQUI PRA BAIXO.................

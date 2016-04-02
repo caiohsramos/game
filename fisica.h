@@ -1,6 +1,12 @@
 #ifndef _FISICA_H_
 #define _FISICA_H_
 #include "objetos.h"
+#include "constantes.h"
+#include "vetor.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
 
 //força que a nave n sofre do planeta p
 void forcaPlaneta(double *f, NAVE *n, PLANETA *p);

@@ -1,6 +1,10 @@
 #ifndef _OBJETOS_H_
 #define _OBJETOS_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 typedef struct NAVE_ {
     char nome[30];
     double massa;
