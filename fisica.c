@@ -1,9 +1,10 @@
+/* Caio Ramos - NUSP 9292991 - IME USP 2016
+ * 
+ * Spacewar
+ */
 #include "fisica.h"
 
 
-//REFAZER TUDO DAQUI PRA BAIXO.................
-
-//força que a nave n sofre do planeta p
 void forcaPlaneta(double *f, NAVE *n, PLANETA *p) {
 	double dist;
 	dist = magnitude(n->pos);
@@ -12,7 +13,6 @@ void forcaPlaneta(double *f, NAVE *n, PLANETA *p) {
 	produto_esc(f, -force, f);
 }
  
-//força que a n1 sofre da n2
 void forcaNave(double *f, NAVE *n1, NAVE *n2) {
 	double delta[2];
 	subt_vet(delta, n2->pos, n1->pos);
@@ -32,6 +32,7 @@ void moveNave(double *f, NAVE *n) {
 	produto_esc(aux, T, n->vel);
 	soma_vet(n->pos, n->pos, aux);
 }
+
 
 void forcaPlanetaProj(double *f, PROJETIL *proj, PLANETA *p) {
 	double dist;
@@ -67,7 +68,6 @@ void simular(UNIVERSO *u) {
 	double f_total[2];
 	int i;
 	while(u->p->t_sim > 0.0) {
-		//faz a simulacao....
 		
 		//calcula nova posicao n1.
 			//forcas: planeta, n2.
@@ -77,8 +77,7 @@ void simular(UNIVERSO *u) {
 		moveNave(f_total, u->n1);
 		
 		printf("N1:\n");
-		printf("posx = %.15lf, posy = %.15lf\n", u->n1->pos[0], u->n1->pos[1]);
-		printf("velx = %.15lf, vely = %.15lf\n", u->n1->vel[0], u->n1->vel[1]);
+		printf("%.15lf %.15lf\n", u->n1->pos[0], u->n1->pos[1]);
 		
 		//calcula nova posicao n2.
 			//forcas: planeta, n1.
@@ -88,10 +87,9 @@ void simular(UNIVERSO *u) {
 		moveNave(f_total, u->n2);
 		
 		printf("N2:\n");
-		printf("posx = %.15lf, posy = %.15lf\n", u->n2->pos[0], u->n2->pos[1]);
-		printf("velx = %.15lf, vely = %.15lf\n", u->n2->vel[0], u->n2->vel[1]);
+		printf("%.15lf %.15lf\n", u->n2->pos[0], u->n2->pos[1]);
 		
-		//calcula nova posicao de cada projetil (for u->proj[i]).
+		//calcula nova posicao de cada projetil
 			//forcas: planeta, n1, n2.
 		if(u->t_proj > 0) {
 			for(i = 0; i < u->n_proj; i++) {
@@ -101,9 +99,8 @@ void simular(UNIVERSO *u) {
 				forcaPlanetaProj(f, &(u->proj[i]), u->p);
 				soma_vet(f_total, f, f_total);
 				moveProj(f_total, &(u->proj[i]));
-				printf("PROJ%d:\n", i+1);
-				printf("posx = %.15lf, posy = %.15lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
-				printf("velx = %.15lf, vely = %.15lf\n", u->proj[i].vel[0], u->proj[i].vel[1]);
+				printf("PROJETIL%d:\n", i+1);
+				printf("%.15lf %.15lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
 			}
 		}
 		

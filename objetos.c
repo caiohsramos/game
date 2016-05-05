@@ -1,4 +1,9 @@
+/* Caio Ramos - NUSP 9292991 - IME USP 2016
+ * 
+ * Spacewar
+ */
 #include "objetos.h"
+#include "janela.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -79,6 +84,7 @@ void imprimirUniverso(UNIVERSO *u) {
 }
 
 void liberaUniverso(UNIVERSO *u) {
+	liberaJanela(u);
 	free(u->p);
 	free(u->n1);
 	free(u->n2);

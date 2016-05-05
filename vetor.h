@@ -1,3 +1,7 @@
+/* Caio Ramos - NUSP 9292991 - IME USP 2016
+ * 
+ * Spacewar
+ */
 #ifndef _VETOR_H_
 #define _VETOR_H_
 
