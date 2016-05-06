@@ -3,29 +3,19 @@
 #include <allegro5/allegro_image.h>
 
 void criarJanela(UNIVERSO *u) {
-	/*
-	SDL_Init(SDL_INIT_VIDEO);
-	u->tela = SDL_SetVideoMode(800, 600, 0, SDL_HWPALETTE|SDL_DOUBLEBUF);
-	SDL_WM_SetCaption("GAME", NULL);
-	carregarImagens(u);
-	drawImage(u->p->planeta, 350, 250, u->tela);
-	drawImage(u->n1->nave[0], 50, 300, u->tela);
-	drawImage(u->n2->nave[8], 700, 300, u->tela);
-	//drawImage(u->proj[0].projetil, 400, 100, u->tela);
-	SDL_Flip(u->tela);
-	// Sleep briefly 
-	
-	SDL_Delay(1);
-	*/
-	
 	al_init();
 	al_init_image_addon();
+	
 	u->tela = al_create_display(800, 600);
 	al_clear_to_color(al_map_rgb(0, 0, 0));
+	
 	carregarImagens(u);
+	
+	/*
 	al_draw_bitmap(u->p->planeta, 350, 250, 0);
 	al_draw_bitmap(u->n1->nave[0], 50, 300, 0);
 	al_draw_bitmap(u->n2->nave[8], 700, 300, 0);
+    */
     al_flip_display();
 }
 
@@ -47,25 +37,26 @@ void carregarImagens(UNIVERSO *u) {
 	
 }
 
-/*
-void drawImage(SDL_Surface *image, int x, int y, SDL_Surface *tela)
-{
-	*
-    SDL_Rect dest;
-
-    * Set the blitting rectangle to the size of the src image *
-
-    dest.x = x;
-    dest.y = y;
-    dest.w = image->w;
-    dest.h = image->h;
-
-    * Blit the entire image onto the screen at coordinates x and y *
-
-    SDL_BlitSurface(image, NULL, tela, &dest);
-    *
+void atualizarJanela(UNIVERSO *u) {
+	//mexer nessa funcao...
+	int x, y;
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+	al_draw_bitmap(u->p->planeta, 350, 250, 0);
+	
+	//AQUI
+	x = u->n1->pos[0]/10000.0;
+	y = u->n1->pos[1]/10000.0;
+	al_draw_bitmap(u->n1->nave[0], x, y, 0);
+	
+	//AQUI
+	x = u->n2->pos[0]/10000.0;
+	y = u->n2->pos[1]/10000.0;
+	al_draw_bitmap(u->n2->nave[0], x, x, 0);
+	
+	al_flip_display();
+	al_rest(0.3);
 }
-*/
+
 
 void liberaJanela(UNIVERSO *u) {
 	al_destroy_display(u->tela);
@@ -76,5 +67,7 @@ void liberaJanela(UNIVERSO *u) {
 		al_destroy_bitmap(u->n1->nave[i]);
 		al_destroy_bitmap(u->n2->nave[i]);
 	}
-	
+		
 }
+
+

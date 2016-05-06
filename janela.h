@@ -6,12 +6,11 @@
 
 void criarJanela(UNIVERSO *u);
 
-//void drawImage(SDL_Surface *image, int x, int y, SDL_Surface *tela);
 
 void liberaJanela(UNIVERSO *u);
 
 void carregarImagens(UNIVERSO *u);
 
-//SDL_Surface *loadImage(char *name);
+void atualizarJanela(UNIVERSO *u);
 
 #endif

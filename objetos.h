@@ -17,7 +17,6 @@ typedef struct NAVE_ {
     double massa;
     double pos[2]; //vetor posicao
     double vel[2]; //vetor velocidade
-    //SDL_Surface *nave[16];
     ALLEGRO_BITMAP *nave[16];
 } NAVE;
 
@@ -26,7 +25,6 @@ typedef struct PLANETA_ {
     double raio;
     double massa;
     double t_sim; //tempo de simulacao
-    //SDL_Surface *planeta;
     ALLEGRO_BITMAP *planeta;
 } PLANETA;
 
@@ -46,7 +44,6 @@ typedef struct UNIVERSO_ {
     PROJETIL *proj; //Ponteiro para o vetor de Projeteis
     int n_proj; //numero de projeteis
     double t_proj; //tempo de duracao de cada projetil
-    //SDL_Surface *tela;
     ALLEGRO_DISPLAY *tela;
 } UNIVERSO;
 

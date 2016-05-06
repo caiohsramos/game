@@ -3,6 +3,7 @@
  * Spacewar
  */
 #include "fisica.h"
+#include "janela.h"
 
 
 void forcaPlaneta(double *f, NAVE *n, PLANETA *p) {
@@ -76,8 +77,8 @@ void simular(UNIVERSO *u) {
 		soma_vet(f_total, f, f_total);
 		moveNave(f_total, u->n1);
 		
-		printf("N1:\n");
-		printf("%.15lf %.15lf\n", u->n1->pos[0], u->n1->pos[1]);
+		//printf("N1:\n");
+		//printf("%.15lf %.15lf\n", u->n1->pos[0], u->n1->pos[1]);
 		
 		//calcula nova posicao n2.
 			//forcas: planeta, n1.
@@ -86,8 +87,8 @@ void simular(UNIVERSO *u) {
 		soma_vet(f_total, f, f_total);
 		moveNave(f_total, u->n2);
 		
-		printf("N2:\n");
-		printf("%.15lf %.15lf\n", u->n2->pos[0], u->n2->pos[1]);
+		//printf("N2:\n");
+		//printf("%.15lf %.15lf\n", u->n2->pos[0], u->n2->pos[1]);
 		
 		//calcula nova posicao de cada projetil
 			//forcas: planeta, n1, n2.
@@ -104,6 +105,7 @@ void simular(UNIVERSO *u) {
 			}
 		}
 		
+		atualizarJanela(u);
 		u->t_proj -= T;
 		u->p->t_sim -= T;
 	}

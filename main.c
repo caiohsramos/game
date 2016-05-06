@@ -18,9 +18,9 @@ int main(int argc, char *argv[]) {
 	printf("----------------------------------------------------------\n");
 
 	criarJanela(u);
-	//SDL_Delay(4000);
-	al_rest(5.0);
-	//simular(u);
+	//atualizarJanela(u);
+	al_rest(1.0);
+	simular(u);
 	liberaUniverso(u);
 	return 0;
 }
