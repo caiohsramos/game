@@ -3,7 +3,6 @@
  * Spacewar
  */
 #include "fisica.h"
-#include "janela.h"
 
 
 void forcaPlaneta(double *f, NAVE *n, PLANETA *p) {
@@ -100,11 +99,10 @@ void simular(UNIVERSO *u) {
 				forcaPlanetaProj(f, &(u->proj[i]), u->p);
 				soma_vet(f_total, f, f_total);
 				moveProj(f_total, &(u->proj[i]));
-				printf("PROJETIL%d:\n", i+1);
-				printf("%.15lf %.15lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
+				//printf("PROJETIL%d:\n", i+1);
+				//printf("%.15lf %.15lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
 			}
 		}
-		
 		atualizarJanela(u);
 		u->t_proj -= T;
 		u->p->t_sim -= T;

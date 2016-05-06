@@ -6,6 +6,7 @@
 #define _FISICA_H_
 #include "objetos.h"
 #include "constantes.h"
+#include "janela.h"
 #include "vetor.h"
 #include <stdlib.h>
 #include <stdio.h>

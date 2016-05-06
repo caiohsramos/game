@@ -53,3 +53,7 @@ double distancia(double *a, double *b) {
 void direcao(double *a, double *b) {
 	produto_esc(b, 1.0/magnitude(a), a);
 }
+
+double sentido(double *a, double *b) {
+	//fazer isso...
+}

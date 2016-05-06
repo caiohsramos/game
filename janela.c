@@ -11,11 +11,11 @@ void criarJanela(UNIVERSO *u) {
 	
 	carregarImagens(u);
 	
-	/*
-	al_draw_bitmap(u->p->planeta, 350, 250, 0);
+
 	al_draw_bitmap(u->n1->nave[0], 50, 300, 0);
 	al_draw_bitmap(u->n2->nave[8], 700, 300, 0);
-    */
+	al_draw_bitmap(u->p->planeta, 350, 250, 0);
+    
     al_flip_display();
 }
 
@@ -41,20 +41,21 @@ void atualizarJanela(UNIVERSO *u) {
 	//mexer nessa funcao...
 	int x, y;
 	al_clear_to_color(al_map_rgb(0, 0, 0));
-	al_draw_bitmap(u->p->planeta, 350, 250, 0);
 	
-	//AQUI
-	x = u->n1->pos[0]/10000.0;
-	y = u->n1->pos[1]/10000.0;
+	//calcular qual é a imagem a ser usada no desenho...
+	x = (u->n1->pos[0]+380);
+	y = (u->n1->pos[1]+280);
 	al_draw_bitmap(u->n1->nave[0], x, y, 0);
 	
-	//AQUI
-	x = u->n2->pos[0]/10000.0;
-	y = u->n2->pos[1]/10000.0;
-	al_draw_bitmap(u->n2->nave[0], x, x, 0);
+	//calcular qual é a imagem a ser usada no desenho...
+	x = (u->n2->pos[0]+380);
+	y = (u->n2->pos[1]+280);
+	al_draw_bitmap(u->n2->nave[0], x, y, 0);
+	
+	al_draw_bitmap(u->p->planeta, 350, 250, 0);	
 	
 	al_flip_display();
-	al_rest(0.3);
+	//al_rest(0.3);
 }
 
 
