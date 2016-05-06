@@ -3,6 +3,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include "objetos.h"
+#include "vetor.h"
 
 void criarJanela(UNIVERSO *u);
 
@@ -12,5 +13,7 @@ void liberaJanela(UNIVERSO *u);
 void carregarImagens(UNIVERSO *u);
 
 void atualizarJanela(UNIVERSO *u);
+
+int escolherNave(double theta);
 
 #endif

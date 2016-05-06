@@ -37,20 +37,32 @@ void carregarImagens(UNIVERSO *u) {
 	
 }
 
+int escolherNave(double theta) {
+	//refazer......
+	int k = theta/22.5;
+	k += 4;
+	k = k % 12;
+	return k;
+}
+
 void atualizarJanela(UNIVERSO *u) {
-	//mexer nessa funcao...
 	int x, y;
+	double theta;
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 	
-	//calcular qual é a imagem a ser usada no desenho...
+	//calcular qual é a imagem a ser usada no desenho... (sentido())
 	x = (u->n1->pos[0]+380);
 	y = (u->n1->pos[1]+280);
-	al_draw_bitmap(u->n1->nave[0], x, y, 0);
+	theta = sentido(u->n1->vel);
 	
-	//calcular qual é a imagem a ser usada no desenho...
+	al_draw_bitmap(u->n1->nave[escolherNave(theta)], x, y, 0);
+	
+	//calcular qual é a imagem a ser usada no desenho... (sentido())
 	x = (u->n2->pos[0]+380);
 	y = (u->n2->pos[1]+280);
-	al_draw_bitmap(u->n2->nave[0], x, y, 0);
+	theta = sentido(u->n1->vel);
+	
+	al_draw_bitmap(u->n2->nave[escolherNave(theta)], x, y, 0);
 	
 	al_draw_bitmap(u->p->planeta, 350, 250, 0);	
 	

@@ -32,7 +32,7 @@ double distancia(double *a, double *b);
 //direcao de 'a' retornada no 'b'
 void direcao(double *a, double *b);
 
-double sentido(double *a, double *b);
+double sentido(double *a);
 
 
 #endif
