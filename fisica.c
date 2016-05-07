@@ -103,6 +103,7 @@ void simular(UNIVERSO *u) {
 				//printf("%.15lf %.15lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
 			}
 		}
+		verificarLimites(u);
 		atualizarJanela(u);
 		u->t_proj -= T;
 		u->p->t_sim -= T;

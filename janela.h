@@ -16,4 +16,6 @@ void atualizarJanela(UNIVERSO *u);
 
 int escolherNave(double theta);
 
+void verificarLimites(UNIVERSO *u);
+
 #endif

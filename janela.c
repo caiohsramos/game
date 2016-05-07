@@ -79,3 +79,7 @@ void liberaJanela(UNIVERSO *u) {
 }
 
 
+void verificarLimites(UNIVERSO *u) {
+	//fazer os limites
+	
+}
