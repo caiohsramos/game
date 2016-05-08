@@ -76,8 +76,6 @@ void simular(UNIVERSO *u) {
 		soma_vet(f_total, f, f_total);
 		moveNave(f_total, u->n1);
 		
-		//printf("N1:\n");
-		//printf("%.15lf %.15lf\n", u->n1->pos[0], u->n1->pos[1]);
 		
 		//calcula nova posicao n2.
 			//forcas: planeta, n1.
@@ -86,8 +84,6 @@ void simular(UNIVERSO *u) {
 		soma_vet(f_total, f, f_total);
 		moveNave(f_total, u->n2);
 		
-		//printf("N2:\n");
-		//printf("%.15lf %.15lf\n", u->n2->pos[0], u->n2->pos[1]);
 		
 		//calcula nova posicao de cada projetil
 			//forcas: planeta, n1, n2.
@@ -99,8 +95,6 @@ void simular(UNIVERSO *u) {
 				forcaPlanetaProj(f, &(u->proj[i]), u->p);
 				soma_vet(f_total, f, f_total);
 				moveProj(f_total, &(u->proj[i]));
-				//printf("PROJETIL%d:\n", i+1);
-				//printf("%.15lf %.15lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
 			}
 		}
 		verificarLimites(u);

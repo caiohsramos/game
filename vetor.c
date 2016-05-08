@@ -54,7 +54,7 @@ void direcao(double *a, double *b) {
 	produto_esc(b, 1.0/magnitude(a), a);
 }
 
+//sentido de 'a' em relacao ao eixo X (graus)
 double sentido(double *a) {
-	//fazer isso...
 	return atan2(a[0], a[1])*180.0/M_PI;
 }

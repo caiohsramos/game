@@ -2,7 +2,6 @@
  *
  * Spacewar
  */
-
 #include "fisica.h"
 #include "objetos.h"
 #include <stdio.h>

@@ -33,7 +33,6 @@ typedef struct PROJETIL_ {
 	double massa;
     double pos[2]; //vetor posicao
     double vel[2]; //vetor velocidade
-    //SDL_Surface *projetil;
 } PROJETIL;
 
 //Struct para guardar todas as informacoes do Universo

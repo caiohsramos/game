@@ -1,12 +1,8 @@
-Makefile com comandos: all, clean e run. A entrada do programa é de acordo com PDF, e a saida é da
-forma:
-	N1:
-	*posicao da nave 1*
-	N2:
-	*posicao da nave 2*
-	PROJETIL[i]:
-	*posicao do projetil[i]*
+Caio Ramos - NUSP 9292991 - IME USP 2016
 
-As naves ignoram os projeteis no calculo da força resultante(massa despresivel em comparacao a das
-naves), assim como os projeteis se ignoram entre si no calculo de suas forcas resultantes. O planeta
-nao sofre com as forças gravitacionais dos outros objetos por possuir massa muito grande.
+Para executar o jogo, deve-se ter previamente instalado a biblioteca padrão Allegro 5.
+Um bom tutorial para isto é: http://www.rafaeltoledo.net/compilando-e-instalando-a-biblioteca-allegro-5-no-ubuntu/
+Executar o Makefile com o comando 'make' para montar todos os arquivos.
+Para executar o teste do jogo, rodar o comando 'make run1'. Sera usado o
+argumento 0.017 e o arquivo 1.in. (Para efeito de teste dos limites da tela
+use o comando 'make run2')

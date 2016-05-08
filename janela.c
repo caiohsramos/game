@@ -1,3 +1,7 @@
+/* Caio Ramos - NUSP 9292991 - IME USP 2016
+ *
+ * Spacewar
+ */
 #include "janela.h"
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -12,8 +16,6 @@ void criarJanela(UNIVERSO *u) {
 	carregarImagens(u);
 	
 
-	//al_draw_bitmap(u->n1->nave[0], 50, 300, 0);
-	//al_draw_bitmap(u->n2->nave[8], 700, 300, 0);
 	al_draw_bitmap(u->p->planeta, 350, 250, 0);
     
     al_flip_display();
@@ -37,7 +39,6 @@ void carregarImagens(UNIVERSO *u) {
 }
 
 int escolherNave(double theta) {
-	//refazer......
 	int k = round(theta/22.5);
 	if (k<0) k = 16+k;
 	
@@ -80,6 +81,10 @@ void liberaJanela(UNIVERSO *u) {
 
 
 void verificarLimites(UNIVERSO *u) {
-	//fazer os limites
-	
+	//nave1
+	if(u->n1->pos[0] > 400 || u->n1->pos[0] < -400) u->n1->pos[0] = -(u->n1->pos[0]);
+	if(u->n1->pos[1] > 300 || u->n1->pos[1] < -300) u->n1->pos[1] = -(u->n1->pos[1]);
+	//nave2
+	if(u->n2->pos[0] > 400|| u->n2->pos[0] < -400) u->n2->pos[0] = -(u->n2->pos[0]);
+	if(u->n2->pos[1] > 300|| u->n2->pos[1] < -300) u->n2->pos[1] = -(u->n2->pos[1]);	
 }

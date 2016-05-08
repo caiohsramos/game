@@ -1,0 +1,14 @@
+Caio Ramos - NUSP 9292991 - IME USP 2016
+
+O maior desafio para esta etapa do projeto foi a escolha da biblioteca
+gráfica. A xwc, disponibilizada pelo professor, pareceu muito complicada
+para fazer coisas simples como colocar uma imagem na tela. Pesquisando sobre
+o assunto, cheguei a conclusão que a Allegro fosse a mais intuitiva de usar.
+Com ela, consegui me precupar menos em como fazer os desenhos na janela e
+mais em como realmente fazer o jogo funcionar.
+Nao foi implementado muito codigo sobre os projeteis, ja que esses dependem 
+muito da iteracao com o usuario. Porém, as naves ja orbitam o planeta, essas
+com as devidas rotacoes e ja ultrapassam as bordas, indo para a borda oposta
+com o mesmo vetor velocidade. O efeito de esperar ate metade da nave passar
+para move-la de posicao ficou bem interessante.
+

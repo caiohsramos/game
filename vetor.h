@@ -32,6 +32,7 @@ double distancia(double *a, double *b);
 //direcao de 'a' retornada no 'b'
 void direcao(double *a, double *b);
 
+//sentido de 'a' em relacao ao eixo X (graus)
 double sentido(double *a);
 
 
