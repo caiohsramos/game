@@ -15,6 +15,14 @@ void criarJanela(UNIVERSO *u) {
 	
 	carregarImagens(u);
 	
+	//FAZER AS INICIALIZACOES DO TECLADO.......
+	al_install_keyboard();
+	u->timer = al_create_timer(1.0 / 60.0);
+	u->event_queue = al_create_event_queue();
+	al_register_event_source(u->event_queue, al_get_display_event_source(u->tela));
+	al_register_event_source(u->event_queue, al_get_timer_event_source(u->timer));
+	//al_register_event_source(event_queue, al_get_keyboard_event_source());
+
 
 	al_draw_bitmap(u->p->planeta, 350, 250, 0);
     
@@ -71,6 +79,8 @@ void atualizarJanela(UNIVERSO *u) {
 void liberaJanela(UNIVERSO *u) {
 	al_destroy_display(u->tela);
 	al_destroy_bitmap(u->p->planeta);
+	al_destroy_timer(u->timer);
+	al_destroy_event_queue(u->event_queue);
 	int i;
 	for(i = 0; i < 16; i++) {
 		al_destroy_bitmap(u->n1->nave[i]);
@@ -88,3 +98,5 @@ void verificarLimites(UNIVERSO *u) {
 	if(u->n2->pos[0] > 400|| u->n2->pos[0] < -400) u->n2->pos[0] = -(u->n2->pos[0]);
 	if(u->n2->pos[1] > 300|| u->n2->pos[1] < -300) u->n2->pos[1] = -(u->n2->pos[1]);	
 }
+
+

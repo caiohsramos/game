@@ -67,6 +67,8 @@ void simular(UNIVERSO *u) {
 	double f[2];
 	double f_total[2];
 	int i;
+	
+	al_start_timer(u->timer);
 	while(u->p->t_sim > 0.0) {
 		
 		//calcula nova posicao n1.
@@ -97,8 +99,87 @@ void simular(UNIVERSO *u) {
 				moveProj(f_total, &(u->proj[i]));
 			}
 		}
+
+		//tentar colocar as condicoes da event_queue aqui
+
+		ALLEGRO_EVENT ev;
+		bool redraw = true;
+		al_wait_for_event(u->event_queue, &ev);
+
+		if(ev.type == ALLEGRO_EVENT_TIMER) {
+			/*if(key[KEY_UP] && bouncer_y >= 4.0) {
+				bouncer_y -= 4.0;
+			}
+
+			if(key[KEY_DOWN] && bouncer_y <= SCREEN_H - BOUNCER_SIZE - 4.0) {
+				bouncer_y += 4.0;
+			}
+
+			if(key[KEY_LEFT] && bouncer_x >= 4.0) {
+				bouncer_x -= 4.0;
+			}
+
+			if(key[KEY_RIGHT] && bouncer_x <= SCREEN_W - BOUNCER_SIZE - 4.0) {
+				bouncer_x += 4.0;
+			}
+			*/
+
+			redraw = true;
+		}
+		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+			break;
+		}
+		/*
+		else if(ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+			switch(ev.keyboard.keycode) {
+				case ALLEGRO_KEY_UP:
+					key[KEY_UP] = true;
+					break;
+
+				case ALLEGRO_KEY_DOWN:
+					key[KEY_DOWN] = true;
+					break;
+
+				case ALLEGRO_KEY_LEFT: 
+					key[KEY_LEFT] = true;
+					break;
+
+				case ALLEGRO_KEY_RIGHT:
+					key[KEY_RIGHT] = true;
+					break;
+			}
+		}
+		else if(ev.type == ALLEGRO_EVENT_KEY_UP) {
+			switch(ev.keyboard.keycode) {
+				case ALLEGRO_KEY_UP:
+					key[KEY_UP] = false;
+					break;
+
+				case ALLEGRO_KEY_DOWN:
+					key[KEY_DOWN] = false;
+					break;
+
+				case ALLEGRO_KEY_LEFT: 
+					key[KEY_LEFT] = false;
+					break;
+
+				case ALLEGRO_KEY_RIGHT:
+					key[KEY_RIGHT] = false;
+					break;
+
+				case ALLEGRO_KEY_ESCAPE:
+					doexit = true;
+					break;
+			}
+		}
+		*/
+		if(redraw && al_is_event_queue_empty(u->event_queue)) {
+			redraw = false;
+			atualizarJanela(u);
+		}
+	
+		
 		verificarLimites(u);
-		atualizarJanela(u);
 		u->t_proj -= T;
 		u->p->t_sim -= T;
 	}

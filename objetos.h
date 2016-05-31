@@ -44,6 +44,8 @@ typedef struct UNIVERSO_ {
     int n_proj; //numero de projeteis
     double t_proj; //tempo de duracao de cada projetil
     ALLEGRO_DISPLAY *tela;
+	ALLEGRO_EVENT_QUEUE *event_queue;
+	ALLEGRO_TIMER *timer;
 } UNIVERSO;
 
 /*	Aloca e le da entrada padrao um universo e seus componentes.
