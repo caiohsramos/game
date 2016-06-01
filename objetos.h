@@ -103,5 +103,6 @@ void imprimirUniverso(UNIVERSO *u);
  */
 void liberaUniverso(UNIVERSO *u);
 
+int verificaColisoes(UNIVERSO *u);
 
 #endif

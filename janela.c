@@ -91,12 +91,22 @@ void liberaJanela(UNIVERSO *u) {
 
 
 void verificarLimites(UNIVERSO *u) {
-	//nave1
+	//nave1 - posicao
 	if(u->n1->pos[0] > 400 || u->n1->pos[0] < -400) u->n1->pos[0] = -(u->n1->pos[0]);
 	if(u->n1->pos[1] > 300 || u->n1->pos[1] < -300) u->n1->pos[1] = -(u->n1->pos[1]);
-	//nave2
+	//nave1 - velocidade
+	if(u->n1->vel[0] > 200)  u->n1->vel[0] = 200;
+	if(u->n1->vel[0] < -200) u->n1->vel[0] = -200;
+	if(u->n1->vel[1] > 200)  u->n1->vel[1] = 200;
+	if(u->n1->vel[1] < -200) u->n1->vel[1] = -200;
+	//nave2 - posicao
 	if(u->n2->pos[0] > 400|| u->n2->pos[0] < -400) u->n2->pos[0] = -(u->n2->pos[0]);
 	if(u->n2->pos[1] > 300|| u->n2->pos[1] < -300) u->n2->pos[1] = -(u->n2->pos[1]);	
+	//nave2 - velocidade
+	if(u->n2->vel[0] > 200)  u->n2->vel[0] = 200;
+	if(u->n2->vel[0] < -200) u->n2->vel[0] = -200;
+	if(u->n2->vel[1] > 200)  u->n2->vel[1] = 200;
+	if(u->n2->vel[1] < -200) u->n2->vel[1] = -200;
 }
 
 void jogar(UNIVERSO *u) {
@@ -121,7 +131,8 @@ void jogar(UNIVERSO *u) {
 			}
 
 			if(key[KEY_S]) {
-				
+				u->n1->vel[0] *= 0.95;
+				u->n1->vel[1] *= 0.95;
 			}
 			if(key[KEY_D]) {
 				
@@ -133,7 +144,8 @@ void jogar(UNIVERSO *u) {
 				u->n2->vel[1] *= 1.05;
 			}
 			if(key[KEY_DOWN]) {
-				
+				u->n2->vel[0] *= 0.95;
+				u->n2->vel[1] *= 0.95;
 			}
 
 			if(key[KEY_LEFT]) {

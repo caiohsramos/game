@@ -83,6 +83,20 @@ void imprimirUniverso(UNIVERSO *u) {
 	
 }
 
+int verificaColisoes(UNIVERSO *u) {
+	//nave - nave
+	
+	//nave1 -  planeta		
+	
+	//nave2 -  planeta		
+	
+	//nave1 - projeteis
+	
+	//nave2 - projeteis
+	
+	return 1;
+}
+
 void liberaUniverso(UNIVERSO *u) {
 	liberaJanela(u);
 	free(u->p);
