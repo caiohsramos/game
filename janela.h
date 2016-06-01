@@ -7,7 +7,9 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include "objetos.h"
+#include "fisica.h"
 #include "vetor.h"
+#include "constantes.h"
 
 /* Funcao que inicializa uma janela para o jogo
  *
@@ -70,5 +72,6 @@ int escolherNave(double theta);
  */
 void verificarLimites(UNIVERSO *u);
 
+void jogar(UNIVERSO *u);
 
 #endif

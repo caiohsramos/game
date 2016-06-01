@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 
 	criarJanela(u);
 	al_rest(1.0);
-	simular(u);
+	jogar(u);
 	liberaUniverso(u);
 	return 0;
 }

@@ -43,6 +43,7 @@ typedef struct UNIVERSO_ {
     PROJETIL *proj; //Ponteiro para o vetor de Projeteis
     int n_proj; //numero de projeteis
     double t_proj; //tempo de duracao de cada projetil
+	//variaveis para ambiente grafico
     ALLEGRO_DISPLAY *tela;
 	ALLEGRO_EVENT_QUEUE *event_queue;
 	ALLEGRO_TIMER *timer;
