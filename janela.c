@@ -100,22 +100,20 @@ void verificarLimites(UNIVERSO *u) {
 }
 
 void jogar(UNIVERSO *u) {
+	bool key[8] = { false, false, false, false, false, false, 
+		false, false};	
 	while(u->p->t_sim > 0.0) {
 		
 		//analise dos eventos do teclado, mouse e timer
 		ALLEGRO_EVENT ev;
 		al_start_timer(u->timer);
 		bool redraw = false;
-		bool key[8] = { false, false, false, false, false, false, 
-			false, false};	
 		al_wait_for_event(u->event_queue, &ev);
 
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
-		
 			if(key[KEY_W]) {
-				printf("Aumento na nave 1\n");
-				u->n1->vel[0] *= 2;
-				u->n1->vel[1] *= 2;
+				u->n1->vel[0] *= 1.05;
+				u->n1->vel[1] *= 1.05;
 			}
 
 			if(key[KEY_A]) {
@@ -131,9 +129,8 @@ void jogar(UNIVERSO *u) {
 
 			if(key[KEY_UP]) {
 
-				printf("Aumento na nave 2\n");
-				u->n2->vel[0] *= 2;
-				u->n2->vel[1] *= 2;
+				u->n2->vel[0] *= 1.05;
+				u->n2->vel[1] *= 1.05;
 			}
 			if(key[KEY_DOWN]) {
 				
@@ -187,7 +184,7 @@ void jogar(UNIVERSO *u) {
 					key[KEY_RIGHT] = true;
 					break;
 			}
-		}
+		}	
 		else if(ev.type == ALLEGRO_EVENT_KEY_UP) {
 			switch(ev.keyboard.keycode) {
 				case ALLEGRO_KEY_UP:
