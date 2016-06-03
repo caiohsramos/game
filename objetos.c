@@ -94,7 +94,7 @@ int verificaColisoes(UNIVERSO *u) {
 	
 	//nave2 - projeteis
 	
-	return 1;
+	return 0;
 }
 
 void liberaUniverso(UNIVERSO *u) {
