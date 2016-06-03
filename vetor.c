@@ -58,3 +58,19 @@ void direcao(double *a, double *b) {
 double sentido(double *a) {
 	return atan2(a[0], a[1])*180.0/M_PI;
 }
+	
+void rotaciona_menos10(double *a) {
+	double x, y;
+	x = a[0];
+	y = a[1];
+	a[0] = 0.99619469809*x + 0.08715574274*y;
+	a[1] = 0.99619469809*y - 0.08715574274*x;
+}
+
+void rotaciona_10(double *a) {
+	double x, y;
+	x = a[0];
+	y = a[1];
+	a[0] = 0.99619469809*x - 0.08715574274*y;
+	a[1] = 0.99619469809*y + 0.08715574274*x;
+}

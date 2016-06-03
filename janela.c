@@ -122,38 +122,42 @@ void jogar(UNIVERSO *u) {
 
 		if(ev.type == ALLEGRO_EVENT_TIMER) {
 			if(key[KEY_W]) {
-				u->n1->vel[0] *= 1.05;
-				u->n1->vel[1] *= 1.05;
+				//u->n1->vel[0] *= 1.05;
+				//u->n1->vel[1] *= 1.05;
+				produto_esc(u->n1->vel, 1.05, u->n1->vel);
 			}
 
 			if(key[KEY_A]) {
-				
+				rotaciona_menos10(u->n1->vel);
 			}
 
 			if(key[KEY_S]) {
-				u->n1->vel[0] *= 0.95;
-				u->n1->vel[1] *= 0.95;
+				//u->n1->vel[0] *= 0.95;
+				//u->n1->vel[1] *= 0.95;
+				produto_esc(u->n1->vel, 0.95, u->n1->vel);
 			}
 			if(key[KEY_D]) {
-				
+				rotaciona_10(u->n1->vel);	
 			}
 
 			if(key[KEY_UP]) {
-
-				u->n2->vel[0] *= 1.05;
-				u->n2->vel[1] *= 1.05;
+				//u->n2->vel[0] *= 1.05;
+				//u->n2->vel[1] *= 1.05;
+				produto_esc(u->n2->vel, 1.05, u->n2->vel);
+			
 			}
 			if(key[KEY_DOWN]) {
-				u->n2->vel[0] *= 0.95;
-				u->n2->vel[1] *= 0.95;
+				//u->n2->vel[0] *= 0.95;
+				//u->n2->vel[1] *= 0.95;
+				produto_esc(u->n2->vel, 0.95, u->n2->vel);
 			}
 
 			if(key[KEY_LEFT]) {
-				
+				rotaciona_menos10(u->n2->vel);
 			}
 
 			if(key[KEY_RIGHT]) {
-				
+				rotaciona_10(u->n2->vel);	
 			}
 			
 

@@ -35,5 +35,8 @@ void direcao(double *a, double *b);
 //sentido de 'a' em relacao ao eixo X (graus)
 double sentido(double *a);
 
+void rotaciona_10(double *a);
+
+void rotaciona_menos10(double *a);
 
 #endif
