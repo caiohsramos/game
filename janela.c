@@ -34,8 +34,7 @@ void carregarImagens(UNIVERSO *u) {
 	int i;
 	char filename[30];
 	u->p->planeta = al_load_bitmap("./img/planeta.png");
-	//arrumar o jeito que o Bitmap projetil esta organizado
-	//u->proj[0].projetil = loadImage("./img/projetil.png");
+	u->projetil = al_load_bitmap("./img/projetil.png");
 	
 	for(i = 0; i < 16; i++) {
 		sprintf(filename, "./img/nave1-%d.png", i);
@@ -69,6 +68,11 @@ void atualizarJanela(UNIVERSO *u) {
 	theta = sentido(u->n2->vel);
 	
 	al_draw_bitmap(u->n2->nave[escolherNave(theta)], x, y, 0);
+
+	//Desenhar projeteis
+	int i;
+	for(i = 0; i < u->n_proj; i++) 
+		if(u->proj[i].ativo) al_draw_bitmap(u->projetil, u->proj[i].pos[0], u->proj[i].pos[1], 0);
 	
 	al_draw_bitmap(u->p->planeta, 350, 250, 0);	
 	
@@ -107,6 +111,11 @@ void verificarLimites(UNIVERSO *u) {
 	if(u->n2->vel[0] < -200) u->n2->vel[0] = -200;
 	if(u->n2->vel[1] > 200)  u->n2->vel[1] = 200;
 	if(u->n2->vel[1] < -200) u->n2->vel[1] = -200;
+	//verificar limites para os projeteis
+	int i;
+	for(i = 0; i < u->n_proj; i++) {
+		if(
+	}
 }
 
 void jogar(UNIVERSO *u) {

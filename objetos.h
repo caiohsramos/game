@@ -30,6 +30,7 @@ typedef struct PLANETA_ {
 
 //Struct para guardar todas as informacoes de um Projetil
 typedef struct PROJETIL_ {
+	bool ativo;
 	double massa;
     double pos[2]; //vetor posicao
     double vel[2]; //vetor velocidade
@@ -41,6 +42,7 @@ typedef struct UNIVERSO_ {
     NAVE *n2; //Nave 2
     PLANETA *p; //Planeta
     PROJETIL *proj; //Ponteiro para o vetor de Projeteis
+	ALLEGRO_BITMAP *projetil; //ponteiro para a imagem do projetil
     int n_proj; //numero de projeteis
     double t_proj; //tempo de duracao de cada projetil
 	//variaveis para ambiente grafico

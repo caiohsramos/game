@@ -49,6 +49,7 @@ PROJETIL *lerProj(int n_proj) {
 		scanf("%lf", &(proj[i].pos[1]));
 		scanf("%lf", &(proj[i].vel[0]));
 		scanf("%lf", &(proj[i].vel[1]));
+		proj[i].ativo = false;
 	}
 	return proj;
 }

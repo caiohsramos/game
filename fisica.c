@@ -89,6 +89,7 @@ void simular(UNIVERSO *u) {
 	//forcas: planeta, n1, n2.
 	if(u->t_proj > 0) {
 		for(i = 0; i < u->n_proj; i++) {
+			if(!u->proj[i].ativo) continue;
 			forcaNaveProj(f_total, &(u->proj[i]), u->n1);
 			forcaNaveProj(f, &(u->proj[i]), u->n2);
 			soma_vet(f_total, f, f_total);
