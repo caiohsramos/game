@@ -237,9 +237,7 @@ void jogar(UNIVERSO *u) {
 			redraw = false;
 			simular(u);
 			verificarLimites(u);
-			if(verificaColisoes(u)) {
-				printf("Colisão\n");
-			}
+			if(verificaColisoes(u)) break;
 			atualizarJanela(u);
 		}
 	

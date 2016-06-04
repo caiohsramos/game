@@ -84,15 +84,26 @@ void imprimirUniverso(UNIVERSO *u) {
 }
 
 int verificaColisoes(UNIVERSO *u) {
+	double dist, x, y;
 	//nave - nave
-	
-	//nave1 -  planeta		
-	
+	dist = distancia(u->n1->pos, u->n2->pos);	
+	if(dist <= 20) return 1;
+
+	//nave1 -  planeta
+	x = u->n1->pos[0];		
+	y = u->n1->pos[1];		
+	dist = sqrt(x*x + y*y);	
+	if(dist <= 50) return 1;
+
 	//nave2 -  planeta		
+	x = u->n2->pos[0];		
+	y = u->n2->pos[1];		
+	dist = sqrt(x*x + y*y);	
+	if(dist <= 50) return 1;
+
+	//nave1 - projeteis (depois)
 	
-	//nave1 - projeteis
-	
-	//nave2 - projeteis
+	//nave2 - projeteis (depois)
 	
 	return 0;
 }
