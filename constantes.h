@@ -10,6 +10,7 @@
 #define R_TERRA 6.4e6 //Raio da Terra
 #define CTE_G 6.67e-11 //Constante gravitacional
 double T; //intervalo de simulacao
+//atalhos para as teclas usadas
 enum {
 	KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,
 	KEY_W, KEY_A, KEY_S, KEY_D, KEY_G, KEY_L

@@ -72,6 +72,14 @@ int escolherNave(double theta);
  */
 void verificarLimites(UNIVERSO *u);
 
+/* Funcao que faz o desenho e simulalçao do jogo 
+ *
+ * name: void jogar(UNIVERSO *u);
+ * @param: u - ponteiro para UNIVERSO, que contem todas as informacoes
+ * 	para a simulacao.
+ * @return: nenhum
+ *
+ */
 void jogar(UNIVERSO *u);
 
 #endif

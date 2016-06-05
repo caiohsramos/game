@@ -130,6 +130,7 @@ int verificaColisoes(UNIVERSO *u) {
 }
 
 void disparaProj1(UNIVERSO *u) {
+	//FAZER........
 	//mudar a posicao do proj de acordo com a direcao da nave
 	u->proj[0].ativo = true;
 	u->proj[0].pos[0] = u->n1->pos[0];
@@ -140,6 +141,7 @@ void disparaProj1(UNIVERSO *u) {
 }
 
 void disparaProj2(UNIVERSO *u) {
+	//FAZER........
 	//mudar a posicao do proj de acordo com a direcao da nave
 	u->proj[1].ativo = true;
 	u->proj[1].pos[0] = u->n2->pos[0];

@@ -106,10 +106,31 @@ void imprimirUniverso(UNIVERSO *u);
  */
 void liberaUniverso(UNIVERSO *u);
 
+/*	Funcao que verifica colisoes entre os objeto do jogo 
+ *
+ * name: void liberaUniverso(UNIVERSO *u)
+ * @param: u - ponteiro para um universo;
+ * @return: nenhum
+ *
+ */
 int verificaColisoes(UNIVERSO *u);
 
+/*	Funcao que dispara um projetil a partir da nave 1 
+ *
+ * name: void liberaUniverso(UNIVERSO *u)
+ * @param: u - ponteiro para um universo;
+ * @return: nenhum
+ *
+ */
 void disparaProj1(UNIVERSO *u);
 
+/*	Funcao que dispara um projetil a partir da nave 2
+ *
+ * name: void liberaUniverso(UNIVERSO *u)
+ * @param: u - ponteiro para um universo;
+ * @return: nenhum
+ *
+ */
 void disparaProj2(UNIVERSO *u);
 
 #endif

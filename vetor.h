@@ -35,8 +35,10 @@ void direcao(double *a, double *b);
 //sentido de 'a' em relacao ao eixo X (graus)
 double sentido(double *a);
 
+//rotaciona o vetor 'a' em 10 graus
 void rotaciona_10(double *a);
 
+//rotaciona o vetor 'a' em -10 graus (350 graus)
 void rotaciona_menos10(double *a);
 
 #endif

@@ -14,7 +14,7 @@ void criarJanela(UNIVERSO *u) {
 	
 	carregarImagens(u);
 	
-	//FAZER AS INICIALIZACOES DO TECLADO.......
+	//FAZ AS INICIALIZACOES DO TECLADO.......
 	al_install_keyboard();
 	u->timer = al_create_timer(1.0 / FPS);
 	u->event_queue = al_create_event_queue();
@@ -97,6 +97,7 @@ void liberaJanela(UNIVERSO *u) {
 		al_destroy_bitmap(u->n2->nave[i]);
 	}
 	al_destroy_bitmap(u->projetil);
+	al_destroy_bitmap(u->fundo);
 		
 }
 
