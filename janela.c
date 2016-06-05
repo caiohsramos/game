@@ -169,11 +169,17 @@ void jogar(UNIVERSO *u) {
 			}
 			
 			if(key[KEY_G]) {
-				//dispara projetil (nave 1)	
+				//dispara projetil (nave 1)
+				if(!u->proj[0].ativo) {
+					disparaProj1(u);
+				}
 			}
 			
 			if(key[KEY_L]) {
 				//dispara projetil (nave 2)
+				if(!u->proj[1].ativo) {
+					disparaProj2(u);
+				}
 			}
 
 			redraw = true;
@@ -278,7 +284,7 @@ void jogar(UNIVERSO *u) {
 		}
 	
 		
-		u->t_proj -= T;
+		//u->t_proj -= T;
 		u->p->t_sim -= T;
 	}
 	

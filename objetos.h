@@ -107,4 +107,8 @@ void liberaUniverso(UNIVERSO *u);
 
 int verificaColisoes(UNIVERSO *u);
 
+void disparaProj1(UNIVERSO *u);
+
+void disparaProj2(UNIVERSO *u);
+
 #endif
