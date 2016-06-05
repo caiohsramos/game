@@ -11,7 +11,6 @@ void criarJanela(UNIVERSO *u) {
 	al_init_image_addon();
 	
 	u->tela = al_create_display(800, 600);
-	al_clear_to_color(al_map_rgb(0, 0, 0));
 	
 	carregarImagens(u);
 	
@@ -24,6 +23,7 @@ void criarJanela(UNIVERSO *u) {
 	al_register_event_source(u->event_queue, al_get_keyboard_event_source());
 
 
+	al_draw_bitmap(u->fundo, 0, 0, 0);
 	al_draw_bitmap(u->p->planeta, 350, 250, 0);
     
     al_flip_display();
@@ -33,6 +33,7 @@ void carregarImagens(UNIVERSO *u) {
 	
 	int i;
 	char filename[30];
+	u->fundo = al_load_bitmap("./img/fundo.jpg");
 	u->p->planeta = al_load_bitmap("./img/planeta.png");
 	u->projetil = al_load_bitmap("./img/projetil.png");
 	
@@ -55,7 +56,7 @@ int escolherNave(double theta) {
 void atualizarJanela(UNIVERSO *u) {
 	int x, y;
 	double theta;
-	al_clear_to_color(al_map_rgb(0, 0, 0));
+	al_draw_bitmap(u->fundo, 0, 0, 0);
 	
 	x = (u->n1->pos[0]+380);
 	y = (u->n1->pos[1]+280);
@@ -95,6 +96,7 @@ void liberaJanela(UNIVERSO *u) {
 		al_destroy_bitmap(u->n1->nave[i]);
 		al_destroy_bitmap(u->n2->nave[i]);
 	}
+	al_destroy_bitmap(u->projetil);
 		
 }
 

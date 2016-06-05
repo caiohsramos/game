@@ -12,3 +12,19 @@ com as devidas rotacoes e ja ultrapassam as bordas, indo para a borda oposta
 com o mesmo vetor velocidade. O efeito de esperar ate metade da nave passar
 para move-la de posicao ficou bem interessante.
 
+Na parte 3, um dos desafios foi fazer a leitura das teclas ficar sincronizado
+com o desenho do jogo e com seu FPS. O controle escolhido para as naves foi:
+rotação para a direita e esquerda (feita com rotação de vetores), aceleração
+e frenagem. A acelerção e a frenagem simplesmente multiplicam o vetor velocidade
+por um escalar, sendo que é impossível parar a nave completamente.
+Alem disso, foi necessario implentar a colisão, que foi feita por simples aproximação 
+dos centros de dois objetos. O desafio maior ficou por conta dos projeteis, pois seu
+lançamento (tiro) e a detecção de colisão dos mesmos é de dificil sincronia. Por enquanto, 
+a deteccção de colisão esta comentada no codigo do objetos.c enquanto trabalho no
+lançamento. O projetil atualmente é lançado da mesma posição da nave com uma velocidade
+um pouco maior (porém com o mesmo sentido e direção). Isso ficou interessante pois força o 
+jogador a acelerar a nave caso queira lançar um projetil com mais velocidade.
+Finalmente, o jogo finaliza quando as naves se chocam ou quando uma nave se choca com um
+planeta e o processo finaliza. Isso sera mudado para que o jogo anuncie o vencedor e reinicie.
+Alem disse, a mecanica dos projeteis será mudada tambem (No momento os projeteis só desaparecem
+e ficam disponiveis novamente para o jogador caso eles se colidam com o planeta).

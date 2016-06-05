@@ -135,8 +135,8 @@ void disparaProj1(UNIVERSO *u) {
 	u->proj[0].pos[0] = u->n1->pos[0];
 	u->proj[0].pos[1] = u->n1->pos[1];
 	
-	u->proj[0].vel[0] = 1.20 * u->n1->vel[0];
-	u->proj[0].vel[1] = 1.20 * u->n1->vel[1];
+	u->proj[0].vel[0] = 1.30 * u->n1->vel[0];
+	u->proj[0].vel[1] = 1.30 * u->n1->vel[1];
 }
 
 void disparaProj2(UNIVERSO *u) {
@@ -145,8 +145,8 @@ void disparaProj2(UNIVERSO *u) {
 	u->proj[1].pos[0] = u->n2->pos[0];
 	u->proj[1].pos[1] = u->n2->pos[1];
 	
-	u->proj[1].vel[0] = 1.20 * u->n2->vel[0];
-	u->proj[1].vel[1] = 1.20 * u->n2->vel[1];
+	u->proj[1].vel[0] = 1.30 * u->n2->vel[0];
+	u->proj[1].vel[1] = 1.30 * u->n2->vel[1];
 }
 
 void liberaUniverso(UNIVERSO *u) {

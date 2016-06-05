@@ -5,9 +5,5 @@ all: main.o fisica.o objetos.o vetor.o janela.o
 	gcc main.o fisica.o objetos.o vetor.o janela.o -o game $(LFLAGS) ${CFLAGS}
 clean:
 	rm *.o game
-run1:
+run:
 	./game 0.017 <1.in
-run2:
-	./game 0.017 <2.in
-run3:
-	./game 0.017 <3.in

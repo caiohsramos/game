@@ -47,6 +47,7 @@ typedef struct UNIVERSO_ {
     double t_proj; //tempo de duracao de cada projetil
 	//variaveis para ambiente grafico
     ALLEGRO_DISPLAY *tela;
+	ALLEGRO_BITMAP *fundo;
 	ALLEGRO_EVENT_QUEUE *event_queue;
 	ALLEGRO_TIMER *timer;
 } UNIVERSO;
