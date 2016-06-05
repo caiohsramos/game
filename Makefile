@@ -9,3 +9,5 @@ run1:
 	./game 0.017 <1.in
 run2:
 	./game 0.017 <2.in
+run3:
+	./game 0.017 <3.in

@@ -49,7 +49,7 @@ PROJETIL *lerProj(int n_proj) {
 		scanf("%lf", &(proj[i].pos[1]));
 		scanf("%lf", &(proj[i].vel[0]));
 		scanf("%lf", &(proj[i].vel[1]));
-		proj[i].ativo = false;
+		proj[i].ativo = true;
 	}
 	return proj;
 }
@@ -86,6 +86,17 @@ void imprimirUniverso(UNIVERSO *u) {
 
 int verificaColisoes(UNIVERSO *u) {
 	double dist, x, y;
+	
+	//proj -  planeta		
+	int i;
+	for(i = 0; i < u->n_proj; i++) {
+		if(!u->proj[i].ativo) continue;
+		x = u->proj[i].pos[0];		
+		y = u->proj[i].pos[1];		
+		dist = sqrt(x*x + y*y);	
+		if(dist <= 50) u->proj[i].ativo = false;
+	}
+
 	//nave - nave
 	dist = distancia(u->n1->pos, u->n2->pos);	
 	if(dist <= 20) return 1;
@@ -102,9 +113,18 @@ int verificaColisoes(UNIVERSO *u) {
 	dist = sqrt(x*x + y*y);	
 	if(dist <= 50) return 1;
 
-	//nave1 - projeteis (depois)
-	
-	//nave2 - projeteis (depois)
+	//naves - projeteis (comentado para os testes de lançamento)
+	/* 
+	for(i = 0; i < u->n_proj; i++) {
+		if(!u->proj[i].ativo) continue;
+		//nave1
+		dist = distancia(u->n1->pos, u->proj[i].pos);	
+		if(dist <= 20) return 1;
+		//nave1
+		dist = distancia(u->n2->pos, u->proj[i].pos);	
+		if(dist <= 20) return 1;
+	}
+	*/
 	
 	return 0;
 }

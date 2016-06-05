@@ -71,9 +71,14 @@ void atualizarJanela(UNIVERSO *u) {
 
 	//Desenhar projeteis
 	int i;
-	for(i = 0; i < u->n_proj; i++) 
-		if(u->proj[i].ativo) al_draw_bitmap(u->projetil, u->proj[i].pos[0], u->proj[i].pos[1], 0);
-	
+	for(i = 0; i < u->n_proj; i++) { 
+		if(u->proj[i].ativo) {
+			x = (u->proj[i].pos[0]+395);
+			y = (u->proj[i].pos[1]+295);
+			al_draw_bitmap(u->projetil, x, y, 0);
+		}
+	}
+
 	al_draw_bitmap(u->p->planeta, 350, 250, 0);	
 	
 	al_flip_display();
@@ -114,13 +119,15 @@ void verificarLimites(UNIVERSO *u) {
 	//verificar limites para os projeteis
 	int i;
 	for(i = 0; i < u->n_proj; i++) {
-		if(
+		if(!u->proj[i].ativo) continue;
+		if(u->proj[i].pos[0] > 400 || u->proj[i].pos[0] < -400) u->proj[i].pos[0] = -(u->proj[i].pos[0]);
+		if(u->proj[i].pos[1] > 300 || u->proj[i].pos[1] < -300) u->proj[i].pos[1] = -(u->proj[i].pos[1]);
 	}
 }
 
 void jogar(UNIVERSO *u) {
-	bool key[8] = { false, false, false, false, false, false, 
-		false, false};	
+	bool key[10] = { false, false, false, false, false, false, 
+		false, false, false, false};	
 	while(u->p->t_sim > 0.0) {
 		
 		//analise dos eventos do teclado, mouse e timer
@@ -161,6 +168,13 @@ void jogar(UNIVERSO *u) {
 				rotaciona_10(u->n2->vel);	
 			}
 			
+			if(key[KEY_G]) {
+				//dispara projetil (nave 1)	
+			}
+			
+			if(key[KEY_L]) {
+				//dispara projetil (nave 2)
+			}
 
 			redraw = true;
 		}
@@ -196,9 +210,14 @@ void jogar(UNIVERSO *u) {
 				case ALLEGRO_KEY_LEFT: 
 					key[KEY_LEFT] = true;
 					break;
-
 				case ALLEGRO_KEY_RIGHT:
 					key[KEY_RIGHT] = true;
+					break;
+				case ALLEGRO_KEY_G:
+					key[KEY_G] = true;
+					break;
+				case ALLEGRO_KEY_L:
+					key[KEY_L] = true;
 					break;
 			}
 		}	
@@ -234,6 +253,14 @@ void jogar(UNIVERSO *u) {
 
 				case ALLEGRO_KEY_D:
 					key[KEY_D] = false;
+					break;
+
+				case ALLEGRO_KEY_G:
+					key[KEY_G] = false;
+					break;
+
+				case ALLEGRO_KEY_L:
+					key[KEY_L] = false;
 					break;
 
 				//case ALLEGRO_KEY_ESCAPE:

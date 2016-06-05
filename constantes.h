@@ -12,7 +12,7 @@
 double T; //intervalo de simulacao
 enum {
 	KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT,
-	KEY_W, KEY_A, KEY_S, KEY_D
+	KEY_W, KEY_A, KEY_S, KEY_D, KEY_G, KEY_L
 };
 #endif
 
