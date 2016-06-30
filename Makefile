@@ -1,5 +1,5 @@
 CFLAGS=-Wall -g -lm
-LFLAGS = -lallegro -lallegro_image
+LFLAGS = -lallegro -lallegro_image -lallegro_ttf -lallegro_font
 
 all: main.o fisica.o objetos.o vetor.o janela.o
 	gcc main.o fisica.o objetos.o vetor.o janela.o -o game $(LFLAGS) ${CFLAGS}

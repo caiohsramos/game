@@ -34,6 +34,7 @@ typedef struct PROJETIL_ {
 	double massa;
     double pos[2]; //vetor posicao
     double vel[2]; //vetor velocidade
+	double t;
 } PROJETIL;
 
 //Struct para guardar todas as informacoes do Universo
@@ -45,6 +46,7 @@ typedef struct UNIVERSO_ {
 	ALLEGRO_BITMAP *projetil; //ponteiro para a imagem do projetil
     int n_proj; //numero de projeteis
     double t_proj; //tempo de duracao de cada projetil
+	
 	//variaveis para ambiente grafico
     ALLEGRO_DISPLAY *tela;
 	ALLEGRO_BITMAP *fundo;
@@ -86,7 +88,7 @@ PLANETA *lerPlaneta();
  * @return: ponteiro para uma struct PROJETIL_;
  *
  */
-PROJETIL *lerProj(int n_proj);
+PROJETIL *lerProj(int n_proj, double t_proj);
 
 /*	Funcao que faz a impressao na saida padrao do universo e seus componentes.
  *

@@ -15,7 +15,7 @@ UNIVERSO *lerUniverso() {
 	u->n2 = lerNave();
 	scanf("%d", &(u->n_proj));
 	scanf("%lf", &(u->t_proj));
-	u->proj = lerProj(u->n_proj);
+	u->proj = lerProj(u->n_proj, u->t_proj);
 	return u;
 }
 
@@ -40,7 +40,7 @@ PLANETA *lerPlaneta() {
 	return p;
 }
 
-PROJETIL *lerProj(int n_proj) {
+PROJETIL *lerProj(int n_proj, double t_proj) {
 	PROJETIL *proj = (PROJETIL*)malloc(n_proj*sizeof(PROJETIL));
 	int i;
 	for(i = 0; i < n_proj; i++) {
@@ -49,6 +49,7 @@ PROJETIL *lerProj(int n_proj) {
 		scanf("%lf", &(proj[i].pos[1]));
 		scanf("%lf", &(proj[i].vel[0]));
 		scanf("%lf", &(proj[i].vel[1]));
+		proj[i].t = t_proj;
 		proj[i].ativo = false;
 	}
 	return proj;
@@ -77,7 +78,7 @@ void imprimirUniverso(UNIVERSO *u) {
 	int i;
 	for(i = 0; i < u->n_proj; i++) {
 		printf("Projetil %d:\n", i+1);
-		printf("\tMassa: %.2lf\n", u->n1->massa);
+		printf("\tMassa: %.2lf\n", u->proj[i].massa);
 		printf("\tposx: %.2lf, posy: %.2lf\n", u->proj[i].pos[0], u->proj[i].pos[1]);
 		printf("\tvelx: %.2lf, vely: %.2lf\n", u->proj[i].vel[0], u->proj[i].vel[1]);
 	}
@@ -99,53 +100,71 @@ int verificaColisoes(UNIVERSO *u) {
 
 	//nave - nave
 	dist = distancia(u->n1->pos, u->n2->pos);	
-	if(dist <= 20) return 1;
+	if(dist <= 20) {
+		imprimeTexto("Game Over. As naves colidiram");
+		return 1;
+	}
 
 	//nave1 -  planeta
 	x = u->n1->pos[0];		
 	y = u->n1->pos[1];		
 	dist = sqrt(x*x + y*y);	
-	if(dist <= 50) return 1;
+	if(dist <= 50) {
+		imprimeTexto("Game Over. A nave verde venceu");
+		return 1;
+	}
 
 	//nave2 -  planeta		
 	x = u->n2->pos[0];		
 	y = u->n2->pos[1];		
 	dist = sqrt(x*x + y*y);	
-	if(dist <= 50) return 1;
+	if(dist <= 50) {	
+		imprimeTexto("Game Over. A nave azul venceu");
+		return 1;
+	}
 
 	//naves - projeteis (comentado para os testes de lançamento)
-	/*
 	for(i = 0; i < u->n_proj; i++) {
 		if(!u->proj[i].ativo) continue;
 		//nave1
 		dist = distancia(u->n1->pos, u->proj[i].pos);	
-		if(dist <= 20) return 1;
-		//nave1
+		if(dist <= 25) {
+			imprimeTexto("Game Over. A nave verde venceu");
+			return 1;
+		}
+		//nave2
 		dist = distancia(u->n2->pos, u->proj[i].pos);	
-		if(dist <= 20) return 1;
+		if(dist <= 25) {
+			imprimeTexto("Game Over. A nave azul venceu");
+			return 1;
+		}
 	}
-	*/
+	
 	
 	return 0;
 }
 
 void disparaProj1(UNIVERSO *u) {
-	//FAZER........
+	double acrescimo;
 	//mudar a posicao do proj de acordo com a direcao da nave
 	u->proj[0].ativo = true;
-	u->proj[0].pos[0] = u->n1->pos[0];
-	u->proj[0].pos[1] = u->n1->pos[1];
+	acrescimo = (u->n1->vel[0]/magnitude(u->n1->vel))*30;
+	u->proj[0].pos[0] = u->n1->pos[0] + acrescimo;
+	acrescimo = (u->n1->vel[1]/magnitude(u->n1->vel))*30;
+	u->proj[0].pos[1] = u->n1->pos[1] + acrescimo;
 	
 	u->proj[0].vel[0] = 1.30 * u->n1->vel[0];
 	u->proj[0].vel[1] = 1.30 * u->n1->vel[1];
 }
 
 void disparaProj2(UNIVERSO *u) {
-	//FAZER........
+	double acrescimo;
 	//mudar a posicao do proj de acordo com a direcao da nave
 	u->proj[1].ativo = true;
-	u->proj[1].pos[0] = u->n2->pos[0];
-	u->proj[1].pos[1] = u->n2->pos[1];
+	acrescimo = (u->n2->vel[0]/magnitude(u->n2->vel))*30;
+	u->proj[1].pos[0] = u->n2->pos[0] + acrescimo;
+	acrescimo = (u->n2->vel[1]/magnitude(u->n2->vel))*30;
+	u->proj[1].pos[1] = u->n2->pos[1] + acrescimo;
 	
 	u->proj[1].vel[0] = 1.30 * u->n2->vel[0];
 	u->proj[1].vel[1] = 1.30 * u->n2->vel[1];

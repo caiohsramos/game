@@ -9,6 +9,8 @@
 void criarJanela(UNIVERSO *u) {
 	al_init();
 	al_init_image_addon();
+	al_init_font_addon();
+	al_init_ttf_addon();
 	
 	u->tela = al_create_display(800, 600);
 	
@@ -22,6 +24,7 @@ void criarJanela(UNIVERSO *u) {
 	al_register_event_source(u->event_queue, al_get_timer_event_source(u->timer));
 	al_register_event_source(u->event_queue, al_get_keyboard_event_source());
 
+	mostrarAbertura();	
 
 	al_draw_bitmap(u->fundo, 0, 0, 0);
 	al_draw_bitmap(u->p->planeta, 350, 250, 0);
@@ -128,10 +131,23 @@ void verificarLimites(UNIVERSO *u) {
 	}
 }
 
+void mostrarAbertura() {
+	ALLEGRO_FONT *font = al_load_ttf_font("./font/ComicSans.ttf",50,0 );
+	al_clear_to_color(al_map_rgb(50,10,70));
+	al_draw_text(font, al_map_rgb(255,255,255), (800/2), (25),ALLEGRO_ALIGN_CENTRE, "Comandos:");
+	al_draw_text(font, al_map_rgb(255,255,255), (800/2), (175),ALLEGRO_ALIGN_CENTRE, "Nave azul:  WASD  + G");
+	al_draw_text(font, al_map_rgb(255,255,255), (800/2), (475),ALLEGRO_ALIGN_CENTRE, "Nave verde: Setas + L");
+
+	al_flip_display();
+
+	al_rest(4.0);
+	al_destroy_font(font);
+}
+
 void jogar(UNIVERSO *u) {
 	bool key[10] = { false, false, false, false, false, false, 
-		false, false, false, false};	
-	while(u->p->t_sim > 0.0) {
+		false, false, false, false};
+	while(1) {
 		
 		//analise dos eventos do teclado, mouse e timer
 		ALLEGRO_EVENT ev;
@@ -282,13 +298,41 @@ void jogar(UNIVERSO *u) {
 			redraw = false;
 			simular(u);
 			verificarLimites(u);
-			if(verificaColisoes(u)) break;
+			if(verificaColisoes(u)) {
+				break;
+			}
 			atualizarJanela(u);
 		}
 	
 		
 		//u->t_proj -= T;
-		u->p->t_sim -= T;
+		calculaTempo(u);
+
+
+		//u->p->t_sim -= T;
 	}
 	
+}
+
+void calculaTempo(UNIVERSO *u) {
+	if(u->proj[0].ativo) {
+		u->proj[0].t -= T;	
+		if(u->proj[0].t < 0.0) u->proj[0].ativo = false;
+	} else u->proj[0].t = u->t_proj;	
+
+	if(u->proj[1].ativo) {
+		u->proj[1].t -= T;	
+		if(u->proj[1].t < 0.0) u->proj[1].ativo = false;
+	} else u->proj[1].t = u->t_proj;	
+}
+
+void imprimeTexto(char *texto) {
+	ALLEGRO_FONT *font = al_load_ttf_font("./font/ComicSans.ttf",50,0 );
+	al_clear_to_color(al_map_rgb(50,10,70));
+	al_draw_text(font, al_map_rgb(255,255,255), (800/2), (600/4),ALLEGRO_ALIGN_CENTRE, texto);
+
+	al_flip_display();
+
+	al_rest(3.0);
+	al_destroy_font(font);
 }

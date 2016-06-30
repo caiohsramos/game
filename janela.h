@@ -6,6 +6,8 @@
 #define _JANELA_H_
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include "objetos.h"
 #include "fisica.h"
 #include "vetor.h"
@@ -81,5 +83,32 @@ void verificarLimites(UNIVERSO *u);
  *
  */
 void jogar(UNIVERSO *u);
+
+/* Funcao que imprime uma mensagem na tela 
+ *
+ * name: void imprimeTexto(char *texto);
+ * @param: texto - string que contem o texto a ser impresso 
+ * @return: nenhum
+ *
+ */
+void imprimeTexto(char *texto);
+
+/* Funcao que imprime uma mensagem na tela 
+ *
+ * name: void mostrarAbertura(void);
+ * @param: nenhum 
+ * @return: nenhum
+ *
+ */
+void mostrarAbertura(void);
+
+/* Funcao que imprime uma mensagem na tela 
+ *
+ * name: void calculaTempo(UNIVERSO *u); 
+ * @param: u - ponteiro para o universo 
+ * @return: nenhum
+ *
+ */
+void calculaTempo(UNIVERSO *u); 
 
 #endif

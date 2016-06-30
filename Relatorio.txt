@@ -28,3 +28,14 @@ Finalmente, o jogo finaliza quando as naves se chocam ou quando uma nave se choc
 planeta e o processo finaliza. Isso sera mudado para que o jogo anuncie o vencedor e reinicie.
 Alem disse, a mecanica dos projeteis será mudada tambem (No momento os projeteis só desaparecem
 e ficam disponiveis novamente para o jogador caso eles se colidam com o planeta).
+
+Na parte 4 foram resolvidos os problemas restantes do jogo, que eram principalmente relacionados
+com os projeteis. Para os projeteis serem lançados a frente da nave, usei o vetor velocidade da 
+mesma para criar um vetor unitario na mesma direcao e sentido do anterior. Depois esse vetor foi 
+multiplicado por um escalar e somado com o vetor posicao da nave. Assim, independente da direcao da 
+nave, o projetil sempre era lançado a sua frente. Alem disso, foi estipulado um tempo maximo de 
+sobrevivencia do projetil; assim que esse tempo acaber ou que o projetil se choque com o planeta, a nave 
+que o lançou tem direito a lançar outro. Nessa parte foram incluidas telas de abertura e fechamento:
+a de abertura com instrucoes basicas de jogo para que nao seja necessaria a leitura do README; e a de
+fechamento com o motivo do "Game Over". Para o futuro, pretendo fazer com que o jogo continue depois
+de um eventual "Game Over", com uma eventual contagem de pontos.
